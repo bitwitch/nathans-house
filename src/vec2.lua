@@ -1,4 +1,4 @@
-local Vec2 = {}
+Vec2 = {}
 
 function Vec2:new(x,y)
 	local vec2 = {} 
@@ -16,15 +16,8 @@ function Vec2:new(x,y)
 		return Vec2:new(self.x / mag, self.y / mag)
 	end
 
-	-- function vec2:move(dx, dy, dt)
-	-- 	local delta = dt or 1
-	-- 	self.x = self.x + dx * delta
-	-- 	self.y = self.y + dy * delta
-	-- end
-
 	return vec2
 end
 
-return Vec2
 
 
