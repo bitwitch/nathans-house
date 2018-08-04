@@ -26,15 +26,13 @@ function nathan:update()
 	-- Collisions
 	for i, platform in ipairs(platforms.list) do
 		if (collision:check(self, platform)) then 
-			
 			-- Check if on ground 
 			if collision:bottom(self, platform) then 
 				self.grounded = true
 				self.pos.y = platform.pos.y - self.h 
-			else 
-				self.grounded = false
 			end 			
-			
+		else
+			self.grounded = false
 		end
 	end 
 

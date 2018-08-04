@@ -21,7 +21,7 @@ function love.load()
 	nathan.pos = Vec2:new(250, 450)
 
 	-- platforms:new(0, HEIGHT - 25, WIDTH, 25)
-	platforms:new(0, HEIGHT - 75, WIDTH, 25)
+	platforms:new(0, HEIGHT - 75, WIDTH-100, 25)
 end
 
 
