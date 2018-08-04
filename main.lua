@@ -1,14 +1,20 @@
 function love.load()
+	-- Setup
 	love.graphics.setDefaultFilter("nearest", "nearest")
 	love.window.setTitle('Nathan\'s House')
-	WIDTH  = love.graphics.getWidth()
-	HEIGHT = love.graphics.getHeight()
 
-	-- load modules
+	-- Global Constants 
+	WIDTH   = love.graphics.getWidth()
+	HEIGHT  = love.graphics.getHeight()
+	GRAV    = 0.098
+	TERMVEL = 12
+    
+	-- Load Modules
 	require 'input'
 	Vec2 = require 'vec2'
 	_Nathan = require 'nathan'
 
+	-- Init 
 	Nathan = _Nathan.new()
 	Nathan.pos = Vec2:new(250, 250)
 end

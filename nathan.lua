@@ -10,8 +10,8 @@ function Nathan:new()
 
 	nathan.w = 35
 	nathan.h = 60
-	nathan.hsp = 10
-	nathan.jumpSpeed = 50
+	nathan.hsp = 5
+	nathan.jumpSpeed = 10
 
 	--TODO(shaw): make this a sprite when there is actually art in the game
 	
