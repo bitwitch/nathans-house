@@ -1,18 +1,17 @@
 nathan = {}
 
-function nathan:init() 
-	self.pos = Vec2:new()
-	self.vel = Vec2:new()
-	self.acc = Vec2:new()
+nathan.pos = Vec2:new()
+nathan.vel = Vec2:new()
+nathan.acc = Vec2:new()
 
-	self.w = 35
-	self.h = 60
-	self.hsp = 7
-	self.vsp = 0
-	self.jumpSpeed = -10
-	self.jump = false
-	self.grounded = false
-end
+nathan.w = 35
+nathan.h = 60
+nathan.hsp = 7
+nathan.vsp = 0
+nathan.jumpSpeed = -17
+nathan.jump = false
+nathan.grounded = false
+
 
 function nathan:draw()
 	love.graphics.setColor(255/255, 250/255, 181/255, 1)
@@ -69,8 +68,5 @@ function nathan:update()
 	end 
 
 	self.pos.y = self.pos.y + self.vel.y
-
-
-	-- print(self.pos.y)
 end
 
