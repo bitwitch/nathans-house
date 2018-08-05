@@ -52,7 +52,7 @@ function nathan:update()
 
 	if not groundCollisionDetected then 
 		self.grounded = false
-	end 
+	end
 
 	-- Update horizontal vel, pos
 	self.prev.x = self.pos.x
