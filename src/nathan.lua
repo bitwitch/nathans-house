@@ -9,7 +9,8 @@ function nathan:init()
 	self.h = 60
 	self.hsp = 7
 	self.vsp = 0
-	self.jumpSpeed = 10
+	self.jumpSpeed = -10
+	self.jump = false
 	self.grounded = false
 end
 
@@ -22,28 +23,39 @@ end
 
 function nathan:update()
 
-
-	-- Collisions
+	-- Platform Collisions
+	local collisionDetected = false 
 	for i, platform in ipairs(platforms.list) do
+
+		-- if there is about to be a collision, filter by direction
 		if (collision:check(self, platform)) then 
-			-- Check if on ground 
+
+			-- Check if bottom collision
 			if collision:bottom(self, platform) then 
-				self.grounded = true
+				collisionDetected = true
+				self.grounded = true				
 				self.pos.y = platform.pos.y - self.h 
-			end 			
-		else
-			self.grounded = false
+				break -- TODO(shaw): this may prove to have issues but for now we just handle the first collision
+			else 
+				self.grounded = false
+			end		
 		end
+	end
+
+	if not collisionDetected then 
+		self.grounded = false 		
 	end 
 
-	
-	
 	-- Update horizontal vel, pos
 	self.vel.x = self.vel.x + self.acc.x 
 	self.pos.x = self.pos.x + self.vel.x
-	
 
 	-- Update vertical vel, pos
+	if (self.jump) then 
+		self.vel.y = self.jumpSpeed
+		self.jump = false 
+		self.grounded = false
+	end 
 
 	-- fall if not on ground
 	if self.grounded then 
@@ -57,5 +69,8 @@ function nathan:update()
 	end 
 
 	self.pos.y = self.pos.y + self.vel.y
+
+
+	-- print(self.pos.y)
 end
 

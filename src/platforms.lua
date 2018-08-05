@@ -22,3 +22,10 @@ function platforms:new(x,y,w,h)
 
 	return platform
 end
+
+function platforms:draw()
+	for i, platform in ipairs(self.list) do
+		platform:draw()
+	end
+end
+

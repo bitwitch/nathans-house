@@ -6,7 +6,7 @@ function love.load()
 	-- Global Constants 
 	WIDTH   = love.graphics.getWidth()
 	HEIGHT  = love.graphics.getHeight()
-	GRAV    = 0.098
+	GRAV    = 0.448
 	TERMVEL = 12
     
 	-- Load Modules
@@ -18,10 +18,12 @@ function love.load()
 
 	-- Init 
 	nathan:init()
-	nathan.pos = Vec2:new(250, 450)
+	nathan.pos = Vec2:new(250, 10)
 
-	-- platforms:new(0, HEIGHT - 25, WIDTH, 25)
-	platforms:new(0, HEIGHT - 75, WIDTH-100, 25)
+	platforms:new(0, 200, WIDTH-400, 25)
+	platforms:new(0, 300, WIDTH-300, 25)
+	platforms:new(0, 400, WIDTH-200, 25)
+	platforms:new(0, 500, WIDTH-100, 25)
 end
 
 
@@ -33,12 +35,7 @@ end
 
 function love.draw()
 	love.graphics.clear(20/255, 57/255, 52/255)
-	
-	-- Platforms
-	for i, platform in ipairs(platforms.list) do
-		platform:draw()
-	end
-		
+	platforms:draw()
 	nathan:draw()
 end
 

@@ -1,10 +1,10 @@
 collision = {}
 
 function collision:check(a,b)
-	return a.pos.x <= b.pos.x+b.w and
-		   b.pos.x <= a.pos.x+a.w and
-		   a.pos.y <= b.pos.y+b.h and
-		   b.pos.y <= a.pos.y+a.h
+	return a.pos.x + a.vel.x <= b.pos.x+b.w         and
+		   b.pos.x           <= a.pos.x+a.w+a.vel.x and
+		   a.pos.y+a.vel.y   <= b.pos.y+b.h         and
+		   b.pos.y           <= a.pos.y+a.h+a.vel.y
 end
 
 -- function collision:right(a,b)
@@ -16,15 +16,17 @@ end
 -- end
 
 function collision:top(a,b)
-	return a.pos.y + a.vel.y < b.pos.y + b.h and a.pos.y + a.vel.y + a.h > b.pos.y
+	return a.pos.y + a.vel.y <= b.pos.y + b.h --and a.pos.y + a.vel.y + a.h > b.pos.y
 end
 
 -- this is used to check if a is about to collide with b 
 function collision:bottom(a,b)
-	return a.pos.y + a.h + a.vel.y + 1 > b.pos.y and a.pos.y + a.vel.y + 1 < b.pos.y + b.h
+	return a.pos.y + a.h + a.vel.y >= b.pos.y --and a.pos.y + a.vel.y < b.pos.y + b.h
 end
 
 -- this is used to check if a 1 pixel away from b
 function collision:directBottom(a,b)
-	return a.pos.y + a.h + 1 >= b.pos.y 
+	return a.pos.y + a.h >= b.pos.y 
 end
+
+

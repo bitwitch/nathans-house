@@ -29,6 +29,12 @@ function getInput()
 		nathan.vel.x = 0
 	end 
 
-	-- Vertical 
 	
+	
+end
+
+function love.keypressed(key)
+	if (key == 'space' or key == 'w' or key == 'up') then 
+		nathan.jump = true
+	end 
 end
