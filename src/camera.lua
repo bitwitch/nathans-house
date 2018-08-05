@@ -51,4 +51,3 @@ function camera:drawPlayerBounds()
   love.graphics.setColor(32/255, 32/255, 32/255, 1)
   love.graphics.rectangle("fill", (WIDTH / 2) - (self.playerBoundWidth / 2), self.y, self.playerBoundWidth, HEIGHT)
 end 
-

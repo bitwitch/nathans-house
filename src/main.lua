@@ -26,7 +26,6 @@ function love.load()
 	platforms:new(0, HEIGHT - 50, WIDTH, 25)
 end
 
-
 function love.update(dt)
 	getInput()
 	nathan:update()
@@ -35,7 +34,7 @@ function love.update(dt)
 	if (nathan.pos.x < camera.x + WIDTH/2 - camera.playerBoundWidth/2) then 
 		camera:setPosition(nathan.pos.x - WIDTH/2 + camera.playerBoundWidth/2) 
 	elseif(nathan.pos.x + nathan.w > camera.x + WIDTH/2 + camera.playerBoundWidth/2) then 
-		camera:setPosition(nathan.pos.x + nathan.w - WIDTH/2 - camera.playerBoundWidth/2) 
+		camera:setPosition(nathan.pos.x + nathan.w - WIDTH/2 - camera.playerBoundWidth/2)
 	end
 
 end

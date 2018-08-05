@@ -1,8 +1,9 @@
 nathan = {}
 
-nathan.pos = Vec2:new()
-nathan.vel = Vec2:new()
-nathan.acc = Vec2:new()
+nathan.pos  = Vec2:new()
+nathan.prev = Vec2:new()
+nathan.vel  = Vec2:new()
+nathan.acc  = Vec2:new()
 
 nathan.w = 35
 nathan.h = 60
@@ -23,17 +24,25 @@ end
 function nathan:update()
 
 	-- Platform Collisions
-	local collisionDetected = false 
+	local groundCollisionDetected = false 
 	for i, platform in ipairs(platforms.list) do
 
 		-- if there is about to be a collision, filter by direction
 		if (collision:check(self, platform)) then 
 
+			if collision:right(self, platform) then
+				print('collision right')
+			elseif collision:left(self, platform) then 
+				print('collision left')
+			elseif collision:top(self, platform) then 
+				 print('collision top')
+			end
+
 			-- Check if bottom collision
 			if collision:bottom(self, platform) then 
-				collisionDetected = true
-				self.grounded = true				
-				self.pos.y = platform.pos.y - self.h 
+				groundCollisionDetected = true
+				self.grounded = true			
+				self.pos.y = platform.pos.y - self.h
 				break -- TODO(shaw): this may prove to have issues but for now we just handle the first collision
 			else 
 				self.grounded = false
@@ -41,11 +50,12 @@ function nathan:update()
 		end
 	end
 
-	if not collisionDetected then 
-		self.grounded = false 		
+	if not groundCollisionDetected then 
+		self.grounded = false
 	end 
 
 	-- Update horizontal vel, pos
+	self.prev.x = self.pos.x
 	self.vel.x = self.vel.x + self.acc.x 
 	self.pos.x = self.pos.x + self.vel.x
 
@@ -56,7 +66,7 @@ function nathan:update()
 		self.grounded = false
 	end 
 
-	-- fall if not on ground
+	-- Fall if not on ground
 	if self.grounded then 
 		self.vel.y = 0
 	else 
@@ -67,6 +77,6 @@ function nathan:update()
 		end 
 	end 
 
-	self.pos.y = self.pos.y + self.vel.y
+	self.prev.y = self.pos.y
+	self.pos.y  = self.pos.y + self.vel.y
 end
-
