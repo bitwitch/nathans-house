@@ -1,10 +1,12 @@
-platforms = {}
+-- vec2 = require 'vec2'
+
+local platforms = {}
 platforms.list = {}
 
 function platforms:new(x,y,w,h)
 	local platform = {}
 	
-	platform.pos = Vec2:new(x,y)
+	platform.pos = vec2:new(x,y)
 	platform.w = w
 	platform.h = h
 	
@@ -28,4 +30,6 @@ function platforms:draw()
 		platform:draw()
 	end
 end
+
+return platforms
 

@@ -1,9 +1,12 @@
-nathan = {}
+-- input = require 'input'
+-- vec2 = require 'vec2'
 
-nathan.pos  = Vec2:new()
-nathan.prev = Vec2:new()
-nathan.vel  = Vec2:new()
-nathan.acc  = Vec2:new()
+local nathan = {}
+
+nathan.pos  = vec2:new()
+nathan.prev = vec2:new()
+nathan.vel  = vec2:new()
+nathan.acc  = vec2:new()
 
 nathan.w = 35
 nathan.h = 60
@@ -13,7 +16,6 @@ nathan.jumpSpeed = -17
 nathan.jump = false
 nathan.grounded = false
 
-
 function nathan:draw()
 	love.graphics.setColor(255/255, 250/255, 181/255, 1)
 
@@ -22,7 +24,6 @@ function nathan:draw()
 end
 
 function nathan:update()
-
 	-- Platform Collisions
 	local groundCollisionDetected = false 
 	for i, platform in ipairs(platforms.list) do
@@ -30,13 +31,13 @@ function nathan:update()
 		-- if there is about to be a collision, filter by direction
 		if (collision:check(self, platform)) then 
 
-			if collision:right(self, platform) then
-				print('collision right')
-			elseif collision:left(self, platform) then 
-				print('collision left')
-			elseif collision:top(self, platform) then 
-				 print('collision top')
-			end
+			-- if collision:right(self, platform) then
+			-- 	print('collision right')
+			-- elseif collision:left(self, platform) then 
+			-- 	print('collision left')
+			-- elseif collision:top(self, platform) then 
+			-- 	 print('collision top')
+			-- end
 
 			-- Check if bottom collision
 			if collision:bottom(self, platform) then 
@@ -55,6 +56,14 @@ function nathan:update()
 	end
 
 	-- Update horizontal vel, pos
+	if input.right then 
+		nathan.vel.x = nathan.hsp
+	elseif input.left then 
+		nathan.vel.x = -nathan.hsp
+	else 
+		nathan.vel.x = 0
+	end
+	
 	self.prev.x = self.pos.x
 	self.vel.x = self.vel.x + self.acc.x 
 	self.pos.x = self.pos.x + self.vel.x
@@ -80,3 +89,5 @@ function nathan:update()
 	self.prev.y = self.pos.y
 	self.pos.y  = self.pos.y + self.vel.y
 end
+
+return nathan
