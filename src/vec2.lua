@@ -1,5 +1,7 @@
 local vec2 = {}
 
+vec2.zero = {x=0, y=0}
+
 function vec2:new(x,y)
 	local v = {} 
 
@@ -36,7 +38,7 @@ function vec2:new(x,y)
 	return v
 end
 
--- module functions, nondestructive
+-- static functions 
 function vec2:add(v1, v2)
 	return vec2:new(v1.x + v2.x, v1.y + v2.y)
 end
